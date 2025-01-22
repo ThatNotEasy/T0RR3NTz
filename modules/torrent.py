@@ -83,7 +83,7 @@ def install_webtorrent_cli():
 
 def magnet_to_torrent(magnet_link, output_dir="torrents"):
     """Convert a magnet link to a torrent file using webtorrent-cli."""
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)  # Create directory if it doesn't exist
 
     torrent_file_name = "download.torrent"
     torrent_path = os.path.join(output_dir, torrent_file_name)
