@@ -1,6 +1,5 @@
 import os
-import argparse
-from colorama import Fore, init
+from colorama import Fore, Style, init
 from modules.args_parser import parse_arguments
 from modules.banners import clear_and_print, display_help
 from modules.torrent import is_tool_installed, install_nodejs, install_webtorrent_cli, magnet_to_torrent
@@ -8,16 +7,23 @@ from modules.torrent import is_tool_installed, install_nodejs, install_webtorren
 # Initialize colorama for colored output
 init(autoreset=True)
 
-if __name__ == "__main__":
-    # Display banners
+def main():
+    # Clear the console and display the banner
     clear_and_print()
-    display_help()
 
+    # Parse command-line arguments
     args = parse_arguments()
 
-    magnet_link = args.url
-    output_dir = args.output
+    # Display custom help if no arguments are provided
+    if not args.url:
+        print(Fore.RED + "Error: Magnet link is required.")
+        display_help()
+        exit(1)
 
+    # Set output directory with a default fallback
+    output_dir = args.output or "torrents"
+
+    # Check and install required tools
     if not is_tool_installed("node"):
         print(Fore.YELLOW + "Node.js is not installed. Installing Node.js...")
         install_nodejs()
@@ -30,8 +36,12 @@ if __name__ == "__main__":
         print(Fore.YELLOW + "webtorrent-cli is not installed. Installing webtorrent-cli...")
         install_webtorrent_cli()
 
+    # Process the magnet link and generate the torrent file
     try:
-        torrent_file = magnet_to_torrent(magnet_link, output_dir)
+        torrent_file = magnet_to_torrent(args.url, output_dir)
         print(Fore.GREEN + f"Process completed successfully! Torrent saved at: {torrent_file}")
     except Exception as e:
         print(Fore.RED + f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
