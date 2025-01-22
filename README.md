@@ -47,3 +47,7 @@ Run the script with the following options:
 | `-h`, `--help`        | Display the help message.          |
 
 ---
+
+- Opss Brazzer xD
+- ![image](https://github.com/user-attachments/assets/14ea1e2d-0881-4172-801c-9c65b56d5c27)
+
