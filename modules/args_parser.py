@@ -3,20 +3,20 @@ from colorama import Fore, Style
 
 def parse_arguments():
     """Parse and return command-line arguments."""
-    # Create the ArgumentParser with no default help and no description
     parser = argparse.ArgumentParser(
-        add_help=False,  # Disable default help
-        usage="",  # Suppress the default usage message
+        description="Torrent Downloader Script",
+        add_help=False,
+        usage="python main.py -u <magnet_url> -o <output_directory>"
     )
 
-    # Add arguments (these will not include the default descriptions)
-    parser.add_argument("-u", "--url", help=argparse.SUPPRESS)
-    parser.add_argument("-o", "--output", help=argparse.SUPPRESS)
+    # Add custom arguments with default values
+    parser.add_argument("-u", "--url", help="URL of the magnet link 🌐", required=True)
+    parser.add_argument("-o", "--output", help="Name of the output file 💾", default="torrents")
     parser.add_argument(
         "-h", "--help",
         action="help",
         default=argparse.SUPPRESS,
-        help=argparse.SUPPRESS
+        help="Show this help message and exit ❓"
     )
 
     return parser.parse_args()
