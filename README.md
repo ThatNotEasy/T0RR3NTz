@@ -24,8 +24,8 @@ A Python script to download torrent files from magnet links using `webtorrent-cl
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/YourUsername/TorrentDownloader.git
-    cd TorrentDownloader
+    git clone https://github.com/ThatNotEasy/T0RR3NTz
+    cd T0RR3NTz
     ```
 
 2. Install Python dependencies:
